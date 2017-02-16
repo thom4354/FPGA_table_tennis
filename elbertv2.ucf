@@ -1,0 +1,55 @@
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+# This file is a .ucf for ElbertV2 Development Board                                                  #
+# To use it in your project :                                                                         #
+# * Remove or comment the lines corresponding to unused pins in the project                           #
+# * Rename the used signals according to the your project                                             #
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+
+#**************************************************************************************************************************************************#
+#                                            UCF for ElbertV2 Development Board                                                                    #
+#**************************************************************************************************************************************************#
+CONFIG VCCAUX = "3.3" ;
+ 
+ # Clock 12 MHz
+  NET "mclk"                  LOC = P129  | IOSTANDARD = LVCMOS33 | PERIOD = 12MHz;
+
+####################################################################################################
+#                                       VGA
+####################################################################################################
+
+    NET "HSYNC"              LOC = P93   | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+    NET "VSYNC"              LOC = P92   | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+    NET "OutBlue[1]"            LOC = P98   | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+    NET "OutBlue[0]"            LOC = P96   | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+    NET "OutGreen[2]"           LOC = P102  | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+    NET "OutGreen[1]"           LOC = P101  | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+    NET "OutGreen[0]"           LOC = P99   | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+    NET "OutRed[2]"             LOC = P105  | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+    NET "OutRed[1]"             LOC = P104  | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+    NET "OutRed[0]"             LOC = P103  | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+
+    NET "AUDIO_L"            LOC = P88   | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+    NET "AUDIO_R"            LOC = P87   | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2; 
+
+    #NET "seg[7]"    LOC = P117  | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+    #NET "seg[6]"    LOC = P116  | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+    #NET "seg[5]"    LOC = P115  | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+    #NET "seg[4]"    LOC = P113  | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+    #NET "seg[3]"    LOC = P112  | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+    #NET "seg[2]"    LOC = P111  | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+    #NET "seg[1]"    LOC = P110  | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+    #NET "seg[0]"    LOC = P114  | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+
+    NET "an[2]"          LOC = P124  | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+    NET "an[1]"          LOC = P121  | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+    NET "an[0]"          LOC = P120  | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+
+    #NET "btn[0]"          LOC = P80   | PULLUP  | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+    #NET "btn[1]"          LOC = P79   | PULLUP  | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+    #NET "btn[2]"          LOC = P78   | PULLUP  | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+    #NET "btn[2]"          LOC = P77   | PULLUP  | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+    #NET "btn[4]"          LOC = P76   | PULLUP  | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+    #NET "btn[3]"          LOC = P75   | PULLUP  | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+	 
+	 NET "data1"           LOC = P31   | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;
+	 NET "data2"           LOC = P19   | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 2;

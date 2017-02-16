@@ -4,18 +4,13 @@ module pong(mclk, an, HSYNC, VSYNC, OutRed, OutGreen, OutBlue, AUDIO_L, AUDIO_R,
 	input mclk;
 	
 	output[2:0] an;
-	//output[7:0] seg;
 	output HSYNC, VSYNC, AUDIO_L, AUDIO_R;
 	output[2:0] OutRed, OutGreen;
 	output[1:0] OutBlue;
 	
 	inout data1;
 	inout data2;
-	
-	//integer led_count = 0;
-	//integer left_score = 0;
-	//integer right_score = 0;
-	
+
 	reg[10:0] hsync_count = 1;
 	reg[9:0] lines = 1;
 	
@@ -40,7 +35,6 @@ module pong(mclk, an, HSYNC, VSYNC, OutRed, OutGreen, OutBlue, AUDIO_L, AUDIO_R,
 	reg[9:0] ballytop = 296;
 	reg[0:0] dir = 0;
 	reg[0:0] ydir = 0;
-	//integer yspeed = 65000;
 	reg[1:0] audio_count = 0;
 	reg[0:0] hit = 0;// = 4000000;
 	reg[5:0] time_count = 0;
@@ -48,8 +42,6 @@ module pong(mclk, an, HSYNC, VSYNC, OutRed, OutGreen, OutBlue, AUDIO_L, AUDIO_R,
 	reg [7:0] data_reg1 = 0;
 	reg [7:0] data_reg2 = 0;
 
-	//reg[2:0] an;
-	//reg[7:0] seg;
 	reg[2:0] OutRed;
 	reg[2:0] OutGreen;
 	reg[1:0] OutBlue;
@@ -60,37 +52,10 @@ module pong(mclk, an, HSYNC, VSYNC, OutRed, OutGreen, OutBlue, AUDIO_L, AUDIO_R,
 	
 	clockfx clock(.CLKIN_IN(mclk), 
 		.CLKFX_OUT(clk));
+
 		
-	//clockdiv clock2(.CLKIN_IN(clk), .CLKFX_OUT(n64_clk));
 		
-	//wire audio_out;
-	//assign audio_out = (clk && countdown);
 		
-	/*always @(posedge clk)
-	begin
-		if(hit && (time_count <= 4000000))
-		begin
-			audio_count <= audio_count + 1;
-			time_count <= time_count + 1;
-			if(audio_count == 133333)
-			begin
-				AUDIO_L <= ~AUDIO_L;
-				AUDIO_R <= ~AUDIO_R;
-				audio_count <= 0;
-			end
-		end
-		
-		else if(hit && (time_count == 4000000))
-		begin
-			time_count <= 0;
-			hit <= 0;
-		end
-	end*/
-	
-	/*always @(posedge clk)
-	begin
-		if(countdown > 0) countdown <= countdown - 1;
-	end*/
 		
 	always @(posedge clk)
 	begin
@@ -165,9 +130,6 @@ module pong(mclk, an, HSYNC, VSYNC, OutRed, OutGreen, OutBlue, AUDIO_L, AUDIO_R,
 			ballxright <= 400;
 			ballybottom <= 305;
 			ballytop <= 296;
-			
-			//right_score <= right_score + 1;
-			//if(right_score == 9) right_score <= 0;
 		end
 
 		else if((ballxright == xpos_2_left) && (((ballytop <= ypos_2_bottom) && (ballytop >= ypos_2_top)) || ((ballybottom <= ypos_2_bottom) && (ballybottom >= ypos_2_top))))
@@ -182,9 +144,6 @@ module pong(mclk, an, HSYNC, VSYNC, OutRed, OutGreen, OutBlue, AUDIO_L, AUDIO_R,
 			ballxright <= 400;
 			ballybottom <= 305;
 			ballytop <= 296;
-			
-			//left_score <= left_score + 1;
-			//if(left_score == 9) left_score <= 0;
 		end
 		
 		if(ballytop == 0) ydir <= 0;
@@ -210,52 +169,8 @@ module pong(mclk, an, HSYNC, VSYNC, OutRed, OutGreen, OutBlue, AUDIO_L, AUDIO_R,
 		end
 	end
 	
-	//assign seg[7:0] = 8'b11111111;
 	assign an[2:0] = 3'b111;
-/*	always @(posedge clk)
-	begin
-		led_count <= led_count + 1;
 		
-		if(led_count == 40000)
-		begin
-			an <= 3'b110;
-			case(right_score)
-				0: seg <= 7'b1000000;
-				1: seg <= 7'b1111001;
-				2: seg <= 7'b0100100;
-				3: seg <= 7'b0110000;
-				4: seg <= 7'b0011001;
-				5: seg <= 7'b0010010;
-				6: seg <= 7'b0000010;
-				7: seg <= 7'b1111000;
-				8: seg <= 7'b0000000;
-				9: seg <= 7'b0010000;
-			endcase
-		end
-		
-		else if(led_count == 80000)
-		begin
-			an <= 3'b101;
-			seg <= 7'b1111111;
-		end
-		
-		else if(led_count == 120000)
-		begin
-			an <= 3'b011;
-			case(left_score)
-				0: seg <= 7'b1000000;
-				1: seg <= 7'b1111001;
-				2: seg <= 7'b0100100;
-				3: seg <= 7'b0110000;
-				4: seg <= 7'b0011001;
-				5: seg <= 7'b0010010;
-				6: seg <= 7'b0000010;
-				7: seg <= 7'b1111000;
-				8: seg <= 7'b0000000;
-				9: seg <= 7'b0010000;
-			endcase
-		end
-	end*/
 		
 	
 	always @(posedge clk)
@@ -337,6 +252,7 @@ module pong(mclk, an, HSYNC, VSYNC, OutRed, OutGreen, OutBlue, AUDIO_L, AUDIO_R,
 		
 	reg [0:0] direction1 = 0;
 		
+	//Tri-state data wire
 	assign data1 = direction1 ? 0 : 'bz;
 		
 	reg [13:0] millisec1 = 0;
@@ -348,6 +264,7 @@ module pong(mclk, an, HSYNC, VSYNC, OutRed, OutGreen, OutBlue, AUDIO_L, AUDIO_R,
 	reg [0:0] hold1 = 0;
 	reg [0:0] hold_finished1 = 0;
 		
+	//This always block receives data from the controller
 	always @(posedge n64_clk)
 	begin
 	
@@ -365,6 +282,7 @@ module pong(mclk, an, HSYNC, VSYNC, OutRed, OutGreen, OutBlue, AUDIO_L, AUDIO_R,
 					direction1 <= 1;
 					listen1 <= 0;
 				end
+				
 				30: direction1 <= 0;
 				40: direction1 <= 1;
 				70: direction1 <= 0;
